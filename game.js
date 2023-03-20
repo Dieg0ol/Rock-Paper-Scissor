@@ -17,18 +17,60 @@ function playRound(playerSelection, computerSelection) {
 
 
     computerSelection = getComputerChoice().toUpperCase();
-    if (playerSelection == "ROCK" && computerSelection == "ROCK") {
-        console.log("its draw");
-    } else if (playerSelection == "ROCK" && computerSelection == "SCISSORS") {
-        return ("you win");
-    } else if (playerSelection == "PAPER" && computerSelection == "ROCK") {
-        return ("you win");
-    } else if (playerSelection == "SCISSORS" && computerSelection == "PAPER") {
-        return ("you win");
+    if (playerSelection === computerSelection) {
+        return ["draw", playerSelection, computerSelection];
+    } else if (
+        (playerSelection === "ROCK" && computerSelection === "SCISSOR") ||
+        (playerSelection === "PAPER" && computerSelection === "ROCK") ||
+        (playerSelection === "SCISSOR" && computerSelection === "PAPER")
+    ) {
+        return ["you win", playerSelection, computerSelection];
     } else {
-        return ("you lose bro");
-
+        return ["you lose bro", playerSelection, computerSelection];
     }
 
+
+
+
+
+    /*
+    // antiga
+
+//if (playerSelection === computerSelection) {
+return ["draw", playerSelection, computerSelection];
+} else if (
+(playerSelection === "ROCK" && computerSelection === "SCISSOR") ||
+(playerSelection === "PAPER" && computerSelection === "ROCK") ||
+(playerSelection === "SCISSOR" && computerSelection === "PAPER")
+) {
+return ["you win", playerSelection, computerSelection];
+} else {
+return ["you lose bro", playerSelection, computerSelection];
 }
-playRound();
+    
+    
+    
+    */
+
+}
+
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        const [result, playerSelection, computerSelection] = playRound();
+        if (result === "you win") {
+            playerScore++;
+            console.log("you win this round")
+        } else if (result === "you lose bro") {
+            computerScore++;
+            console.log("you lose this round");
+        } else {
+            console.log("it's a draw");
+        }
+    }
+    console.log('the game is over');
+
+}
+game();
