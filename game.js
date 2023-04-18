@@ -1,4 +1,4 @@
-function getComputerChoice() {
+function getComputerChoice() { // logica usada para pegar a escolhada maquina
     const choices = ["Rock", "Paper", "Scissor"];
     let computerChoice = Math.floor(Math.random() * choices.length);
     let test = choices[computerChoice];
@@ -8,52 +8,32 @@ function getComputerChoice() {
 }
 
 
-
-function playRound(playerSelection, computerSelection) {
-    playerSelection = prompt("Make your choice by Rock, Paper and Scissor.").toUpperCase();
-    if (playerSelection !== "ROCK" && playerSelection !== "Paper" && playerSelection !== "SCISSORS") {
+    // pega a escolha do usuario e compara com a da maquina e mostra o resultado
+function playRound(playerSelection) { 
+    playerSelection = prompt("Make your choice by Rock, Paper and Scissor.").toUpperCase(); // pega a entrada do usuario
+    if (playerSelection !== "ROCK" && playerSelection !== "Paper" && playerSelection !== "SCISSORS") { // compara ela, se for diferente do que está ali da erro 
         return ("its not work try again");
     }
 
 
-    computerSelection = getComputerChoice().toUpperCase();
-    if (playerSelection === computerSelection) {
+    let computerSelection = getComputerChoice().toUpperCase();
+    if (playerSelection === computerSelection) { // se a do usuario e da maquina forem igual da DRAW
         return ["draw", playerSelection, computerSelection];
     } else if (
-        (playerSelection === "ROCK" && computerSelection === "SCISSOR") ||
-        (playerSelection === "PAPER" && computerSelection === "ROCK") ||
-        (playerSelection === "SCISSOR" && computerSelection === "PAPER")
+        (playerSelection === "ROCK" && computerSelection === "SCISSOR") ||  // se as codições forem verdade o usuario ganha!
+        (playerSelection === "PAPER" && computerSelection === "ROCK") ||    // se as codições forem verdade o usuario ganha!
+        (playerSelection === "SCISSOR" && computerSelection === "PAPER")    // se as codições forem verdade o usuario ganha!
     ) {
         return ["you win", playerSelection, computerSelection];
     } else {
-        return ["you lose bro", playerSelection, computerSelection];
+        return ["you lose bro", playerSelection, computerSelection]; // se todas forem errada o usuario perde!
     }
 
 
-
-
-
-    /*
-    // antiga
-
-//if (playerSelection === computerSelection) {
-return ["draw", playerSelection, computerSelection];
-} else if (
-(playerSelection === "ROCK" && computerSelection === "SCISSOR") ||
-(playerSelection === "PAPER" && computerSelection === "ROCK") ||
-(playerSelection === "SCISSOR" && computerSelection === "PAPER")
-) {
-return ["you win", playerSelection, computerSelection];
-} else {
-return ["you lose bro", playerSelection, computerSelection];
-}
-    
-    
-    
-    */
-
 }
 
+
+ // essa função joga o game 5 vezes e mostra o resultado.
 function game() {
     let playerScore = 0;
     let computerScore = 0;
